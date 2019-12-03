@@ -53,7 +53,7 @@ class AllPhotoViewModelTest {
 
 
     /*
-   * **************Test case of null***************************************************************
+   * **************Test case of null****************************************************************
    * */
     @Test
     fun testNull() {
@@ -63,11 +63,11 @@ class AllPhotoViewModelTest {
 
 
     /*
-   * *********** test of flight data failure*******************************************************
+   * *********** test of photo data failure*******************************************************
    * */
 
     @Test
-    fun getFlightDataFailed() {
+    fun getPhotoDataFailed() {
         val allPhotoMain = AllPhotoMain()
         testSingle = Single.just(allPhotoMain)
         `when`(restClient?.getAllPhotoData()).thenReturn(Single.error<AllPhotoMain>(Throwable("Api error")))

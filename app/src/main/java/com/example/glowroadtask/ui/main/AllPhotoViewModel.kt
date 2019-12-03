@@ -24,7 +24,7 @@ class AllPhotoViewModel : ViewModel() {
         DaggerApiComponent.create().inject(this)
     }
     /**
-     * *********************************** Function to fetch flight data ***************************
+     * *********************************** Function to fetch photo data ***************************
      * */
      fun fetchAllPhotoData() {
         loading.value = true

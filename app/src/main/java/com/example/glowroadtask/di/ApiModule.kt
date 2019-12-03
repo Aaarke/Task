@@ -19,23 +19,23 @@ class ApiModule {
         return Retrofit.Builder().baseUrl(RestClient.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            //.client(httpClient().build())
+            .client(httpClient().build())
             .build()
             .create(ApiService::class.java)
     }
 
-//    private fun httpClient(): OkHttpClient.Builder {
-//        val logging = HttpLoggingInterceptor()
-//        logging.level = HttpLoggingInterceptor.Level.BODY
-//        val httpClient = OkHttpClient.Builder()
-//        val dispatcher = Dispatcher()
-//        dispatcher.maxRequests = 2
-//        httpClient.dispatcher(dispatcher)
-//        httpClient.addInterceptor(logging)
-//        httpClient.readTimeout(60.toLong(), TimeUnit.SECONDS)
-//        httpClient.writeTimeout(60.toLong(), TimeUnit.SECONDS)
-//        return httpClient
-//    }
+    private fun httpClient(): OkHttpClient.Builder {
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+        val httpClient = OkHttpClient.Builder()
+        val dispatcher = Dispatcher()
+        dispatcher.maxRequests = 2
+        httpClient.dispatcher(dispatcher)
+        httpClient.addInterceptor(logging)
+        httpClient.readTimeout(60.toLong(), TimeUnit.SECONDS)
+        httpClient.writeTimeout(60.toLong(), TimeUnit.SECONDS)
+        return httpClient
+    }
 
 
     @Provides
