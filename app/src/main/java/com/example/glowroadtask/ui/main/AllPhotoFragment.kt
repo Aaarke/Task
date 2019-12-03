@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.glowroadtask.R
 
-class MainFragment : Fragment() {
+class AllPhotoFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = AllPhotoFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var allPhotoViewModel: AllPhotoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +25,8 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        allPhotoViewModel = ViewModelProviders.of(this).get(AllPhotoViewModel::class.java)
+
     }
 
 }
