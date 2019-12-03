@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.example.glowroadtask.R
+import com.example.glowroadtask.model.AllPhotoMain
 
 class AllPhotoFragment : Fragment() {
 
@@ -27,6 +29,16 @@ class AllPhotoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         allPhotoViewModel = ViewModelProviders.of(this).get(AllPhotoViewModel::class.java)
 
+    }
+
+
+    override fun onStart() {
+        allPhotoViewModel.fetchAllPhotoData()
+        allPhotoViewModel.allPhotoMain.observe(this,
+            Observer<AllPhotoMain> {
+
+            })
+        super.onStart()
     }
 
 }

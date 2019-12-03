@@ -23,7 +23,13 @@ class RestClient   {
 
 
     fun getAllPhotoData(): Single<AllPhotoMain> {
-        var map = HashMap<String, String>()
+        val map = HashMap<String, String>()
+        map[Keys.ApiField.REQ_METHOD]="flickr.photos.search"
+        map[Keys.ApiField.REQ_API_KEY]=Keys.Constant.API_KEY
+        map[Keys.ApiField.REQ_FORMAT]="json"
+        map[Keys.ApiField.REQ_NOJSONCALLBACK]="1"
+        map[Keys.ApiField.REQ_TEXT]="shirts"
+        map[Keys.ApiField.REQ_EXTRAS]="url_q"
         return getApiService!!.getAllPhotoData(map)
 
     }
