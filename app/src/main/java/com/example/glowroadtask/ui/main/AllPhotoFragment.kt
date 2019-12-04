@@ -47,7 +47,7 @@ class AllPhotoFragment : Fragment() {
                 if (isUpdate) {
                     updateAdapter(it)
                 } else {
-                    setAdapter(it,savedInstanceState)
+                    setAdapter(it)
                 }
             })
 
@@ -65,8 +65,7 @@ class AllPhotoFragment : Fragment() {
     }
 
     private fun setAdapter(
-        allPhotoMain: AllPhotoMain?,
-        savedInstanceState: Bundle?
+        allPhotoMain: AllPhotoMain?
     ) {
         isUpdate = true
         rvAllPhotos.visibility = View.VISIBLE
@@ -74,9 +73,6 @@ class AllPhotoFragment : Fragment() {
         allPhotoAdapter = AllPhotoAdapter(context!!, allPhotoMain!!.photos?.photo)
         rvAllPhotos.adapter = allPhotoAdapter
         main.isRefreshing=false
-        if(savedInstanceState!=null){
-            rvAllPhotos.scrollToPosition(savedInstanceState.getInt(getString(R.string.posi)))
-        }
         rvAllPhotos.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -91,6 +87,7 @@ class AllPhotoFragment : Fragment() {
                 totalItem = mLayoutManager.itemCount
                 scrollOutItem = mLayoutManager.findFirstVisibleItemPosition()
                 if (isScrolling && (currentItems + scrollOutItem == totalItem)) {
+                    progressBar.visibility=View.VISIBLE
                     isScrolling = false
                     pageSiZe++
                     allPhotoViewModel.fetchAllPhotoData(pageSiZe)
@@ -99,10 +96,7 @@ class AllPhotoFragment : Fragment() {
         })
     }
 
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        savedInstanceState.putInt(getString(R.string.posi), mLayoutManager.findFirstVisibleItemPosition())
-        super.onSaveInstanceState(savedInstanceState)
-    }
+
 
 
 }
