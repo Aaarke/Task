@@ -26,10 +26,10 @@ class AllPhotoViewModel : ViewModel() {
     /**
      * *********************************** Function to fetch photo data ***************************
      * */
-     fun fetchAllPhotoData() {
+     fun fetchAllPhotoData(pageSize:Int) {
         loading.value = true
         compositeDisposable.add(
-            restClient?.getAllPhotoData()?.subscribeOn(Schedulers.newThread())
+            restClient?.getAllPhotoData(pageSize)?.subscribeOn(Schedulers.newThread())
                 ?.observeOn(AndroidSchedulers.mainThread())
             !!.subscribeWith(object : DisposableSingleObserver<AllPhotoMain>() {
                 override fun onSuccess(allPhotoMain: AllPhotoMain) {

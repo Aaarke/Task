@@ -22,7 +22,7 @@ class RestClient   {
     }
 
 
-    fun getAllPhotoData(): Single<AllPhotoMain> {
+    fun getAllPhotoData(pageSize:Int): Single<AllPhotoMain> {
         val map = HashMap<String, String>()
         map[Keys.ApiField.REQ_METHOD]="flickr.photos.search"
         map[Keys.ApiField.REQ_API_KEY]=Keys.Constant.API_KEY
@@ -30,6 +30,7 @@ class RestClient   {
         map[Keys.ApiField.REQ_NOJSONCALLBACK]="1"
         map[Keys.ApiField.REQ_TEXT]="shirts"
         map[Keys.ApiField.REQ_EXTRAS]="url_q"
+        map[Keys.ApiField.REQ_PAGE_SIZE]=pageSize.toString()
         return getApiService!!.getAllPhotoData(map)
 
     }

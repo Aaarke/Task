@@ -8,7 +8,8 @@ interface Keys {
             const val REQ_FORMAT ="format"
             const val REQ_NOJSONCALLBACK ="nojsoncallback"
             const val REQ_TEXT="text"
-            const val REQ_EXTRAS="url_q"
+            const val REQ_EXTRAS="extras"
+            const val REQ_PAGE_SIZE="page"
 
 
         }
