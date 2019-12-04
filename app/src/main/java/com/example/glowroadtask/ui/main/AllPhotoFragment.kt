@@ -65,6 +65,7 @@ class AllPhotoFragment : Fragment() {
         if (Utils.internetCheck(context!!)) {
             main.isRefreshing = true
             rvAllPhotos.visibility = View.VISIBLE
+            tvNoInternet.visibility=View.GONE
             allPhotoViewModel.fetchAllPhotoData(pageSiZe)
         } else {
             main.isRefreshing = false
