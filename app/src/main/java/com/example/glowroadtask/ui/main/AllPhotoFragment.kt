@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.glowroadtask.R
 import com.example.glowroadtask.adapter.AllPhotoAdapter
 import com.example.glowroadtask.model.AllPhotoMain
+import com.example.glowroadtask.utils.Utils
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class AllPhotoFragment : Fragment() {
@@ -41,7 +42,7 @@ class AllPhotoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         allPhotoViewModel = ViewModelProviders.of(this).get(AllPhotoViewModel::class.java)
         main.isRefreshing=true
-        allPhotoViewModel.fetchAllPhotoData(pageSiZe)
+        performNetCheck()
         allPhotoViewModel.allPhotoMain.observe(this,
             Observer<AllPhotoMain> {
                 if (isUpdate) {
@@ -53,11 +54,25 @@ class AllPhotoFragment : Fragment() {
 
         main.setOnRefreshListener {
             isUpdate=false
-            allPhotoViewModel.fetchAllPhotoData(pageSiZe)
+            performNetCheck()
         }
 
 
     }
+
+
+    private fun performNetCheck() {
+        if (Utils.internetCheck(context!!)) {
+            main.isRefreshing = true
+            rvAllPhotos.visibility = View.VISIBLE
+            allPhotoViewModel.fetchAllPhotoData(pageSiZe)
+        } else {
+            main.isRefreshing = false
+            rvAllPhotos.visibility = View.GONE
+            tvNoInternet.visibility = View.VISIBLE
+        }
+    }
+
 
 
     private fun updateAdapter(allPhotoMain: AllPhotoMain?) {
